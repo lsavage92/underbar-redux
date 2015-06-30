@@ -102,6 +102,15 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var uniquely = [];
+    
+    for(var i = 0; i < array.length; i++){
+      if(_.indexOf(uniquely, array[i]) === -1){
+        uniquely.push(array[i]);
+      }
+    }
+    
+    return uniquely;
   };
 
 
