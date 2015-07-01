@@ -300,6 +300,17 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var results = {};
+    
+    return function() {
+      var args = Array.prototype.slice.apply(arguments); // args = array of arguments
+      if( args.toString() in results ) {
+        return results[args.toString()];
+      } else {
+        results[args.toString()] = func.apply(this, arguments);
+        return results[args.toString()];
+      }
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
